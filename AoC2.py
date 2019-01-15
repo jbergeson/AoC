@@ -22,10 +22,6 @@ def checksum(data):
         threeCt += three
         i += 1
     return(twoCt, threeCt)
-# twoCt, threeCt = checksum(data)
-# print(twoCt)
-# print(threeCt)
-# print("The answer is ", twoCt * threeCt)
 
 
 def getLetters(data):
@@ -50,24 +46,3 @@ def getLetters(data):
         i += 1
 
 getLetters(data)
-
-
-
-
-# data = sorted(data)
-# row = data[1]
-# length = len(row)
-# print(type(row))
-# i = 0
-# j = 0
-# while True:
-#     while j < length:
-#         line = data[i]
-#         nextline = data[i + 1]
-#         line = line.replace(line[j], "")
-#         nextline = nextline.replace(nextline[j], "")
-#         if (line == nextline):
-#             print(line, nextline)
-#             break
-#         j += 1
-#     i += 1
