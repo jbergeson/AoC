@@ -1,6 +1,6 @@
 import numpy as np 
 data = open("D2P1.txt").read().split()
-
+#data = open("PracData.txt").read().split()
 
 def checksum(data):
     i = 0
@@ -17,11 +17,57 @@ def checksum(data):
             elif (ct == 3):
                 three = 1
             line = line.replace(x, "")
+            print(type(line))
         twoCt += two
         threeCt += three
         i += 1
     return(twoCt, threeCt)
-twoCt, threeCt = checksum(data)
-print(twoCt)
-print(threeCt)
-print("The answer is ", twoCt * threeCt)
+# twoCt, threeCt = checksum(data)
+# print(twoCt)
+# print(threeCt)
+# print("The answer is ", twoCt * threeCt)
+
+
+def getLetters(data):
+    row = data[1]
+    length = len(row)
+    i = 0   #counts rows for myRow
+    for myRow in data:  #iterates through myRows
+        j = 0   #counts rows for otherRow
+        for x in data:  #iterates through rows to check against
+            otherRow = data[j]
+            k = 0   #counts letters in a row
+            check = 0
+            for myLetter in myRow:  #iterates through letter sequence
+                if (myLetter != otherRow[k]):
+                    if (check == 0):
+                        check = 1
+                    else: break
+                elif (check <= 1 and k == (length - 1) and myRow != otherRow):
+                        print(myRow, otherRow)
+                k += 1
+            j += 1
+        i += 1
+
+getLetters(data)
+
+
+
+
+# data = sorted(data)
+# row = data[1]
+# length = len(row)
+# print(type(row))
+# i = 0
+# j = 0
+# while True:
+#     while j < length:
+#         line = data[i]
+#         nextline = data[i + 1]
+#         line = line.replace(line[j], "")
+#         nextline = nextline.replace(nextline[j], "")
+#         if (line == nextline):
+#             print(line, nextline)
+#             break
+#         j += 1
+#     i += 1
