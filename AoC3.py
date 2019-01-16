@@ -6,21 +6,25 @@ data[0] = 1
 data = [int(s) for s in data]
 
 def extractData(data):
+    id = 0
     i = 1
     j = 3
     locationL = list()
     locationT = list()
     area1 = list()
     area2 = list()
+    idTag = list()
     for x in data:
         if (i > len(data)): break
         locationL.append(data[i])
         locationT.append(data[i + 1])
         area1.append(data[j])
         area2.append(data[j + 1])
+        idTag.append(data[id])
         i += 5
         j += 5
-    return(locationL,locationT, area1, area2)
+        id += 5
+    return(locationL,locationT, area1, area2, idTag)
 
 def fillArray(locationL, locationT, area1, area2):
     blanket = np.zeros((1000, 1000))
@@ -47,12 +51,30 @@ def countOverOne(array):
         i += 1
     return(sum)
 
+def findSheet(locationL, locationT, area1, area2, idTag, array):
+    spots = np.where(array == 1)
+    rows = spots[0]
+    cols = spots[1]
+    i = 0
+    for x in locationL:
+        value = True
+        instance = array[locationL[i]:locationL[i] + area1[i], locationT[i]:locationT[i] + area2[i]]
 
-locationL, locationT, area1, area2 = extractData(data)
+        if (np.all(instance == 1)):
+            ans = idTag[i]
+        i += 1
+    return(ans)
+
+
+
+
+locationL, locationT, area1, area2, idTag = extractData(data)
 array = fillArray(locationL, locationT, area1, area2)
-ans = countOverOne(array)
-print(ans)
 
+ans1 = countOverOne(array)
+print("Answer to first part is: %d" % ans1)
+ans2 = findSheet(locationL, locationT, area1, area2, idTag, array)
+print("Answer to second part is: %d" % ans2)
 
 
 ## Note: This section is completely unnecessary, I just wanted to 
