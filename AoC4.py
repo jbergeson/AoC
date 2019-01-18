@@ -70,6 +70,18 @@ def findMin(minutesAsleep, guard):
     minute = guardMins.index(maximum)
     return(minute)
 
+def partTwo(minutesAsleep):
+    totalMax = 0
+    for j in range(1,61):
+        locMax = max(minutesAsleep[j])
+        if (locMax > totalMax):
+            totalMax = locMax
+    for i in range(61):
+        if (totalMax in minutesAsleep[i]):
+            location = minutesAsleep[i].index(totalMax)
+            break
+    return(i, location)
+
 movement = organizeData(data)
 guards, minutesAsleep = sumTime(movement)
 guard = findGuard(guards)
@@ -80,4 +92,12 @@ guard = guard.strip("#")
 guard = int(guard)
 ans = guard * minute
 print("The answer using method 1 is: %d" % ans)
+row, col = partTwo(minutesAsleep)
+minute2 = row - 1
+guard2 = minutesAsleep[0][col]
+guard2 = guard2.strip("#")
+guard2 = int(guard2)
+ans2 = minute2 * guard2
+print(minute2, guard2)
+print("The answer using method 2 is: %d" %ans2)
 
